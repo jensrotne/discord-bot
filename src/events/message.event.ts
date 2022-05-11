@@ -1,4 +1,4 @@
-import * as discordJs from "discord.js";
+import { Message } from "discord.js";
 import { CommandFactory } from "../commands/command.factory";
 import { BaseEvent } from "./base.event";
 
@@ -12,7 +12,7 @@ export class MessageEvent implements BaseEvent {
     name: string;
     once: boolean;
 
-    execute(message: discordJs.Message): void {
+    execute(message: Message): void {
         const commandConstruction = CommandFactory.deconstructCommandString(message.content);
 
         const command = CommandFactory.getCommand(commandConstruction.command);

@@ -17,12 +17,6 @@ export class BjornHitsCommand implements BaseCommand {
 
         let resourcePath = '';
 
-        if (fileName === 'bjørnhits') {
-            resourcePath = 'C:\\Users\\Jens\\Downloads\\bjørnhits.mp3';
-        } else if (fileName === 'bagfra') {
-            resourcePath = 'C:\\Users\\Jens\\Downloads\\bagfra.wav';
-        }
-
         const soundResource = createAudioResource(resourcePath);
 
         player.play(soundResource);
