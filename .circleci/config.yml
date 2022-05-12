@@ -37,10 +37,10 @@ jobs:
           command: |
             #!/usr/bin/env bash
             ssh -oStrictHostKeyChecking=no ${vmUsername}@${vmHost} -p ${vmPort}
-            containerId = echo ${vmPassword} | sudo -S docker ps -aqf "name=discord-bot"
-            sudo docker kill $(containerId)
-            sudo docker login --username ${gitlabUsername} --password ${gitlabPassword} ${repositoryUri}
-            sudo docker run -d --env API_TOKEN --env YOUTUBE_API_TOKEN --restart=always --name discord-bot ${repositoryUri}/${imageName}:<< pipeline.number >>
+            containerId = docker ps -aqf "name=discord-bot"
+            docker kill $(containerId)
+            docker login --username ${gitlabUsername} --password ${gitlabPassword} ${repositoryUri}
+            docker run -d --env API_TOKEN --env YOUTUBE_API_TOKEN --restart=always --name discord-bot ${repositoryUri}/${imageName}:<< pipeline.number >>
 
 workflows:
   version: 2
