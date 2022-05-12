@@ -1,5 +1,5 @@
 import { Message } from "discord.js";
-import { CommandFactory } from "../commands/command.factory";
+import { CommandManager } from "../managers/command.factory";
 import { BaseEvent } from "./base.event";
 
 export class MessageEvent implements BaseEvent {
@@ -13,9 +13,9 @@ export class MessageEvent implements BaseEvent {
     once: boolean;
 
     execute(message: Message): void {
-        const commandConstruction = CommandFactory.deconstructCommandString(message.content);
+        const commandConstruction = CommandManager.deconstructCommandString(message.content);
 
-        const command = CommandFactory.getCommand(commandConstruction.command);
+        const command = CommandManager.getCommand(commandConstruction.command);
     
         if (command) {
             command.handler(message, ...commandConstruction.args);

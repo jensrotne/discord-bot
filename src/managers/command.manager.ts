@@ -1,14 +1,14 @@
-import { BaseCommand } from "./base.command";
-import { FileService } from "../services/file.service";
+import { BaseCommand } from "../commands/base.command";
+import { FileManager } from "./file.manager";
 
-export class CommandFactory {
+export class CommandManager {
 
     private static commands: BaseCommand[] = [];
     private static hasRegisteredTargets: boolean = false;
 
     static getCommand(command: string): BaseCommand | undefined {
-        CommandFactory.registerTargets();
-        return CommandFactory.commands.find(commandImplementation => commandImplementation.name === command);
+        CommandManager.registerTargets();
+        return CommandManager.commands.find(commandImplementation => commandImplementation.name === command);
     }
 
     static deconstructCommandString(content: string): { command: string, args: string[] } {
@@ -27,13 +27,13 @@ export class CommandFactory {
     }
 
     private static registerTargets(): void {
-        if (CommandFactory.hasRegisteredTargets) {
+        if (CommandManager.hasRegisteredTargets) {
             return;
         }
 
-        CommandFactory.commands = FileService.getInstancesOfTypeInDirectory(__dirname, '', '.command.ts');
+        CommandManager.commands = FileManager.getInstancesOfTypeInDirectory(__dirname, '../commands', '.command.ts');
 
-        CommandFactory.hasRegisteredTargets = true;
+        CommandManager.hasRegisteredTargets = true;
     }
 
 }

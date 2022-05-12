@@ -1,7 +1,7 @@
 import fs from 'fs';
 import path from 'path';
 
-export class FileService {
+export class FileManager {
 
     static getInstancesOfTypeInDirectory<T>(currentPath: string, relativePath: string, fileEnding: string): T[] {
         const searchDirectoryPath = path.join(currentPath, relativePath);
@@ -9,7 +9,6 @@ export class FileService {
         const commandFiles = fs.readdirSync(searchDirectoryPath).filter(file => file.endsWith(fileEnding));
         const instances: T[] = [];
 
-        console.log(searchDirectoryPath);
         for (const file of commandFiles) {
             if (file.indexOf('base') !== -1) {
                 continue;

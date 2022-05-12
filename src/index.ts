@@ -1,9 +1,9 @@
 import { Client, Intents } from "discord.js";
 import { BaseEvent } from "./events/base.event";
-import { FileService } from "./services/file.service";
+import { FileManager } from "./managers/file.manager";
 require('dotenv').config();
 
-const events: BaseEvent[] = FileService.getInstancesOfTypeInDirectory(__dirname, 'events', '.event.ts'); 
+const events: BaseEvent[] = FileManager.getInstancesOfTypeInDirectory(__dirname, 'events', '.event.ts'); 
 
 const apiToken = process.env.API_TOKEN;
 
