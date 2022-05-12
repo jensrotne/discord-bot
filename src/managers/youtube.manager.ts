@@ -1,8 +1,6 @@
 import youtubeSearch, { YouTubeSearchOptions } from "youtube-search";
-import ytdl from "ytdl-core";
 import { YoutubeAudio } from "../models/youtube-audio.model";
 import play, { YouTubeStream } from 'play-dl';
-import youtubeDlExec from "youtube-dl-exec";
 
 export class YoutubeManager {
 
