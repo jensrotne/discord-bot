@@ -31,11 +31,11 @@ jobs:
           command: docker push -a ${repositoryUri}/${imageName}
       - add_ssh_keys:
           fingerprints:
-            - "SO:ME:FIN:G:ER:PR:IN:T"
+            - "${sshFingerprint}"
       - run:
           name: SSH to VM and update image
           command: |
-            ssh -oStrictHostKeyChecking=no ${vmUsername}@${vmIp}
+            ssh -oStrictHostKeyChecking=no ${vmUsername}@${vmHost} -p ${vmPort}
             containerId = echo ${vmPassword} | sudo -S docker ps -aqf "name=discord-bot"
             sudo docker kill $(containerId)
             sudo docker login --username ${gitlabUsername} --password ${gitlabPassword} ${repositoryUri}
