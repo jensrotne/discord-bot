@@ -65,7 +65,9 @@ export class YoutubePlayer implements BasePlayer {
 
             const audioStream = await YoutubeManager.getAudioStream(nextAudio.url);
 
-            const audioResource = createAudioResource(audioStream);
+            const audioResource = createAudioResource(audioStream, {
+                inputType: audioStream.type
+            });
 
             this.player?.play(audioResource);
         }

@@ -1,6 +1,8 @@
 import youtubeSearch, { YouTubeSearchOptions } from "youtube-search";
 import ytdl from "ytdl-core";
 import { YoutubeAudio } from "../models/youtube-audio.model";
+import play, { YouTubeStream } from 'play-dl';
+import youtubeDlExec from "youtube-dl-exec";
 
 export class YoutubeManager {
 
@@ -25,15 +27,11 @@ export class YoutubeManager {
     }
 
     static async getAudioStream(videoUrl: string): Promise<any> {
-        const stream = ytdl(videoUrl, {
-            requestOptions: {
-                headers: {
-                    cookie: process.env.YOUTUBE_COOKIE
-                }
-            }
-        });
-        
-        return stream;
+        const stream = play.stream(videoUrl, {
+            discordPlayerCompatibility: true
+        }).catch((error) => {console.log(error);});
+
+        return (await stream as YouTubeStream).stream;
     }
 
 }
