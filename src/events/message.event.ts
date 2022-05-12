@@ -13,6 +13,10 @@ export class MessageEvent implements BaseEvent {
     once: boolean;
 
     execute(message: Message): void {
+        if (message.author.bot) {
+            return;
+        }
+
         const commandConstruction = CommandManager.deconstructCommandString(message.content);
 
         const command = CommandManager.getCommand(commandConstruction.command);
