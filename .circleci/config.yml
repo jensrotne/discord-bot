@@ -38,11 +38,11 @@ jobs:
             #!/usr/bin/env bash
             ssh -oStrictHostKeyChecking=no ${vmUsername}@${vmHost} -p ${vmPort} \
             \<< EOF
-              containerId = docker ps -aqf "name=discord-bot"
+              containerId=$(docker ps -aqf "name=discord-bot")
               docker kill $containerId
               docker login --username ${gitlabUsername} --password ${gitlabPassword} ${repositoryUri}
               docker run -d --env API_TOKEN --env YOUTUBE_API_TOKEN --restart=always --name discord-bot ${repositoryUri}/${imageName}:<< pipeline.number >>
-              
+
             EOF
             
 
