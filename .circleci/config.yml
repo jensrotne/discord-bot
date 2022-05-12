@@ -35,6 +35,7 @@ jobs:
       - run:
           name: SSH to VM and update image
           command: |
+            #!/usr/bin/env bash
             ssh -oStrictHostKeyChecking=no ${vmUsername}@${vmHost} -p ${vmPort}
             containerId = echo ${vmPassword} | sudo -S docker ps -aqf "name=discord-bot"
             sudo docker kill $(containerId)
