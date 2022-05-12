@@ -41,7 +41,7 @@ jobs:
               docker stop discord-bot
               docker rm discord-bot
               docker login --username ${gitlabUsername} --password ${gitlabPassword} ${repositoryUri}
-              docker run -d --env API_TOKEN --env YOUTUBE_API_TOKEN --restart=always --name discord-bot ${repositoryUri}/${imageName}:<< pipeline.number >>
+              docker run -d --env API_TOKEN --env YOUTUBE_API_TOKEN --env YOUTUBE_COOKIE --restart=always --name discord-bot ${repositoryUri}/${imageName}:<< pipeline.number >>
 
             EOF
             

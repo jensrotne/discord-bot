@@ -7,3 +7,5 @@ Discord bot made for my friends and i, but generalized enough to be used by othe
 Hence why it's open source!
 
 [Roadmap](https://trello.com/b/N3xxyK7c/discord-bot-ideas)
+
+Feel free to add a PR for a feature you want added.

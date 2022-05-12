@@ -25,7 +25,13 @@ export class YoutubeManager {
     }
 
     static async getAudioStream(videoUrl: string): Promise<any> {
-        const stream = ytdl(videoUrl);
+        const stream = ytdl(videoUrl, {
+            requestOptions: {
+                headers: {
+                    cookie: process.env.YOUTUBE_COOKIE
+                }
+            }
+        });
         
         return stream;
     }
