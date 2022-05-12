@@ -1,0 +1,52 @@
+version: 2.1
+
+executors:
+  docker-executor:
+    docker:
+      - image: cimg/base:2021.04
+    working_directory: /tmp/build
+
+jobs:
+  build:
+    executor: docker-executor
+    steps:
+      - checkout
+      - setup_remote_docker:
+          docker_layer_caching: false
+      - run:
+          name: Build and tag Docker image
+          command: docker build -t ${repositoryUri}/${imageName}:latest -t ${repositoryUri}/${imageName}:<< pipeline.number >> .
+      - run:
+          name: Save image to TAR
+          command: |
+            mkdir /tmp/build/artifacts
+            docker save -o /tmp/build/artifacts/image ${repositoryUri}/${imageName}:<< pipeline.number >>
+      - store_artifacts:
+          path: /tmp/build/artifacts
+      - run:
+          name: Login to Gitlab CR
+          command: docker login --username ${gitlabUsername} --password ${gitlabPassword} ${repositoryUri}
+      - run:
+          name: Push to Gitlab Repo
+          command: docker push -a ${repositoryUri}/${imageName}
+      - add_ssh_keys:
+          fingerprints:
+            - "SO:ME:FIN:G:ER:PR:IN:T"
+      - run:
+          name: SSH to VM and update image
+          command: |
+            ssh -oStrictHostKeyChecking=no ${vmUsername}@${vmIp}
+            containerId = echo ${vmPassword} | sudo -S docker ps -aqf "name=discord-bot"
+            sudo docker kill $(containerId)
+            sudo docker login --username ${gitlabUsername} --password ${gitlabPassword} ${repositoryUri}
+            sudo docker run -d --env API_TOKEN --env YOUTUBE_API_TOKEN --restart=always --name discord-bot ${repositoryUri}/${imageName}:<< pipeline.number >>
+
+workflows:
+  version: 2
+  dev:
+    jobs:
+      - build:
+          filters:
+            branches:
+              only: master
+          context: gitlab-dev
