@@ -3,7 +3,7 @@ import { BaseEvent } from "./events/base.event";
 import { FileManager } from "./managers/file.manager";
 require('dotenv').config();
 
-const events: BaseEvent[] = FileManager.getInstancesOfTypeInDirectory(__dirname, 'events', '.event.ts'); 
+const events: BaseEvent[] = FileManager.getInstancesOfTypeInDirectory(__dirname, 'events', 'event'); 
 
 const apiToken = process.env.API_TOKEN;
 

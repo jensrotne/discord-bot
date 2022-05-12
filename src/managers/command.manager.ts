@@ -35,7 +35,7 @@ export class CommandManager {
             return;
         }
 
-        CommandManager.commands = FileManager.getInstancesOfTypeInDirectory(__dirname, '../commands', '.command.ts');
+        CommandManager.commands = FileManager.getInstancesOfTypeInDirectory(__dirname, '../commands', 'command');
 
         CommandManager.hasRegisteredTargets = true;
     }
