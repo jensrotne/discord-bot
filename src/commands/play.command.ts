@@ -3,7 +3,6 @@ import { Message } from "discord.js";
 import { BaseCommand } from "./base.command";
 
 export class BjornHitsCommand implements BaseCommand {
-
     name: string = 'play';
     
     handler(message: Message<boolean>, fileName: string): Promise<void> {
@@ -24,6 +23,10 @@ export class BjornHitsCommand implements BaseCommand {
         connection.subscribe(player);
 
         return Promise.resolve();
+    }
+
+    getHelpText(): string {
+        return 'Not implemented';
     }
 
 }

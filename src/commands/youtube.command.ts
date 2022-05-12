@@ -8,10 +8,9 @@ import { Queue } from "../structures/queue";
 import { BaseCommand } from "./base.command";
 
 export class YoutubeCommand implements BaseCommand {
-
     private queue: Queue<YoutubeAudio> = QueueManager.getQueue('youtube');
 
-    name: string = "youtube";
+    name: string = 'youtube';
 
     async handler(message: Message<boolean>, command: string, arg: string): Promise<void> {
         if (!message?.member?.voice.channel?.id) {
@@ -58,5 +57,23 @@ export class YoutubeCommand implements BaseCommand {
                     player.stop();
                 }
         }
+    }
+
+    getHelpText(): string {
+        let helpText = 'Play YouTube video in audio channel'
+
+        helpText += '\n\n';
+        helpText += 'Usage:';
+        helpText += '\n';
+        helpText += '\n';
+        helpText += '`!youtube play <video title>` - Enqueue video to play.';
+        helpText += '\n';
+        helpText += '`!youtube queue` - Show queue.';
+        helpText += '\n';
+        helpText += '`!youtube skip` - Skip current video.';
+        helpText += '\n';
+        helpText += '`!youtube stop` - Stop playing.';
+
+        return helpText;
     }
 }

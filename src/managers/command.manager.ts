@@ -14,7 +14,7 @@ export class CommandManager {
     static deconstructCommandString(content: string): { command: string, args: string[] } {
         const indexOfExclamationMark = content.indexOf('!');
 
-        const messageParts = content.substring(indexOfExclamationMark + 1).split(' ');
+        const messageParts = content.substring(indexOfExclamationMark + 1).split(/ +(?=(?:(?:[^"]*"){2})*[^"]*$)/g);
 
         const command = messageParts[0];
 
@@ -24,6 +24,10 @@ export class CommandManager {
         }
 
         return { command, args };
+    }
+
+    static getRegisteredCommands(): BaseCommand[] {
+        return CommandManager.commands;
     }
 
     private static registerTargets(): void {
