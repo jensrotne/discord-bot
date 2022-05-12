@@ -1,5 +1,5 @@
 import { Message } from "discord.js";
-import { CommandManager } from "../managers/command.factory";
+import { CommandManager } from "../managers/command.manager";
 import { BaseEvent } from "./base.event";
 
 export class MessageEvent implements BaseEvent {

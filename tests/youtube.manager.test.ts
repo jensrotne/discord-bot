@@ -9,7 +9,7 @@ describe('YoutubeManager tests', () => {
         const video = await YoutubeManager.searchVideo(searchString);
 
         expect(video).toBeDefined();
-        expect(video).toBe('https://www.youtube.com/watch?v=m7Bc3pLyij0');
+        expect(video?.url).toBe('https://www.youtube.com/watch?v=m7Bc3pLyij0');
     });
 
     it('Should return stream on valid url', async () => {

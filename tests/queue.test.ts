@@ -33,4 +33,12 @@ describe('Queue tests', () => {
     it('should check if empty', () => {
         expect(queue.isEmpty()).toBe(true);
     });
+
+    it('should for each items', () => {
+        queue.push('test');
+        queue.push('test2');
+        queue.forEach((item, index) => {
+            expect(item).toBe(queue['queue'][index]);
+        });
+    });
 });

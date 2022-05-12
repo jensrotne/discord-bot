@@ -7,10 +7,12 @@
     ],
     "module": "commonjs",
     "target": "es2021",
+    "outDir": "out",
     "strict": true,
     "esModuleInterop": true,
     "skipLibCheck": true,
     "forceConsistentCasingInFileNames": true,
-    "experimentalDecorators": true
+    "experimentalDecorators": true,
+    "sourceMap": true
   }
 }

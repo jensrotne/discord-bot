@@ -26,4 +26,8 @@ export class Queue<T> {
         this.queue = [];
     }
 
+    public forEach(callback: (item: T, index: number) => void): void {
+        this.queue.forEach(callback);
+    }
+
 }
