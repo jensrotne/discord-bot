@@ -18,5 +18,7 @@ describe('YoutubeManager tests', () => {
        const stream = await YoutubeManager.getAudioStream(url);
 
        expect(stream).toBeDefined();
+
+       stream.destroy();
     });
 });

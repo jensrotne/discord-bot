@@ -5,11 +5,54 @@
         "name": "ts-node - Launch & debug",
         "type": "node",
         "request": "launch",
-        "runtimeArgs": ["-r", "ts-node/register"],
+        "runtimeArgs": [
+          "-r",
+          "ts-node/register"
+        ],
         "runtimeExecutable": "node",
-        "args": ["--inspect", "${workspaceFolder}/src/index.ts"],
+        "args": [
+          "--inspect",
+          "${workspaceFolder}/src/index.ts"
+        ],
         "cwd": "${workspaceRoot}",
-        "skipFiles": ["<node_internals>/**", "node_modules/**"]
+        "skipFiles": [
+          "<node_internals>/**",
+          "node_modules/**"
+        ]
+      },
+      {
+        "type": "node",
+        "name": "Debug Jest Tests",
+        "request": "launch",
+        "runtimeVersion": "18.1.0",
+        "program": "${workspaceFolder}/node_modules/jest/bin/jest",
+        "args": [
+          "--runInBand"
+        ],
+        "cwd": "${workspaceFolder}",
+        "console": "integratedTerminal",
+        "internalConsoleOptions": "neverOpen",
+        "disableOptimisticBPs": true
+      },
+      {
+        "type": "node",
+        "name": "vscode-jest-tests.v2",
+        "request": "launch",
+        "console": "integratedTerminal",
+        "internalConsoleOptions": "neverOpen",
+        "runtimeVersion": "18.1.0",
+        "disableOptimisticBPs": true,
+        "program": "${workspaceFolder}/node_modules/jest/bin/jest",
+        "cwd": "${workspaceFolder}",
+        "args": [
+          "--runInBand",
+          "--watchAll=false",
+          "--testNamePattern",
+          "${jest.testNamePattern}",
+          "--runTestsByPath",
+          "--detectOpenHandles",
+          "${jest.testFile}"
+        ]
       }
     ]
   }
