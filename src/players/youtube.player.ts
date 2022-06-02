@@ -1,4 +1,4 @@
-import { AudioPlayer, AudioPlayerIdleState, AudioPlayerStatus, createAudioPlayer, createAudioResource, joinVoiceChannel, VoiceConnection } from "@discordjs/voice";
+import { AudioPlayer, AudioPlayerIdleState, AudioPlayerStatus, createAudioPlayer, createAudioResource, joinVoiceChannel, NoSubscriberBehavior, VoiceConnection } from "@discordjs/voice";
 import { YoutubeManager } from "../managers/youtube.manager";
 import { YoutubeAudio } from "../models/youtube-audio.model";
 import { Queue } from "../structures/queue";
@@ -38,7 +38,11 @@ export class YoutubePlayer implements BasePlayer {
     }
 
     private async startPlaying(): Promise<void> {
-        this.player = this.player || createAudioPlayer();
+        this.player = this.player || createAudioPlayer({
+            behaviors: {
+                noSubscriber: NoSubscriberBehavior.Play
+            }
+        });
 
         this.player.on(AudioPlayerStatus.Idle, async () => {
             await this.nextSong();
@@ -61,15 +65,15 @@ export class YoutubePlayer implements BasePlayer {
                 adapterCreator: nextAudio.message?.guild?.voiceAdapterCreator as any,
             });
 
-            this.connection.subscribe(this.player!);
-
             const audioStream = await YoutubeManager.getAudioStream(nextAudio.url);
-
+            
             const audioResource = createAudioResource(audioStream, {
                 inputType: audioStream.type
             });
-
+            
             this.player?.play(audioResource);
+
+            this.connection.subscribe(this.player!);
         }
     }
 
