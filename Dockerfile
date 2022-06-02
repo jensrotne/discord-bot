@@ -5,7 +5,7 @@ COPY package.json .
 
 RUN npm install
 
-COPY src .
+COPY . .
 
 RUN npx tsc
 
