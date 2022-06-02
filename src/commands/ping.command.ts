@@ -3,7 +3,7 @@ import { BaseCommand } from "./base.command";
 
 export class PingCommand implements BaseCommand {
     
-    name: string = 'ping';
+    name = 'ping';
     handler(message: Message<boolean>): Promise<void> {
         message.channel.send('pong');
 

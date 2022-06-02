@@ -4,7 +4,7 @@ import { FileManager } from "./file.manager";
 export class CommandManager {
 
     private static commands: BaseCommand[] = [];
-    private static hasRegisteredTargets: boolean = false;
+    private static hasRegisteredTargets = false;
 
     static getCommand(command: string): BaseCommand | undefined {
         CommandManager.registerTargets();

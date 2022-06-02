@@ -1,2 +1,17 @@
 node_modules
 npm-debug.log
+.eslintrc
+.git
+.gitattributes
+.gitignore
+.vscode
+.vscodeignore
+.prettierrc
+jest.config.js
+LICENSE
+README.md
+.nvmrc
+tests
+.circleci
+node.sh
+.env

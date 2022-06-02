@@ -1,7 +1,8 @@
 import { Client, Intents } from "discord.js";
 import { BaseEvent } from "./events/base.event";
 import { FileManager } from "./managers/file.manager";
-require('dotenv').config();
+import dotenv from "dotenv";
+dotenv.config();
 
 const events: BaseEvent[] = FileManager.getInstancesOfTypeInDirectory(__dirname, 'events', 'event'); 
 

@@ -15,6 +15,7 @@ export class FileManager {
             }
 
             const commandFilePath = path.join(searchDirectoryPath, file);
+            // eslint-disable-next-line @typescript-eslint/no-var-requires
             const command = require(commandFilePath);
 
             instances.push((new command[Object.keys(command)[0]]));

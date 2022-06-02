@@ -10,7 +10,7 @@ import { BaseCommand } from "./base.command";
 export class YoutubeCommand implements BaseCommand {
     private queue: Queue<YoutubeAudio> = QueueManager.getQueue('youtube');
 
-    name: string = 'youtube';
+    name = 'youtube';
 
     async handler(message: Message<boolean>, command: string, arg: string): Promise<void> {
         if (!message?.member?.voice.channel?.id) {

@@ -1,6 +1,6 @@
 import { YoutubeManager } from "../src/managers/youtube.manager";
-
-require('dotenv').config();
+import dotenv from "dotenv";
+dotenv.config();
 
 describe('YoutubeManager tests', () => {
     it('Should find video', async () =>{

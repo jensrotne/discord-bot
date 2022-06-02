@@ -12,7 +12,7 @@ export class YoutubeManager {
 
         const results = await youtubeSearch(query, options);
 
-        if (!results || results.results.length === 0) {
+        if (!results || results.results.length === 0) {
             return undefined;
         }
 

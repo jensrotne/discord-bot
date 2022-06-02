@@ -3,7 +3,7 @@ import { Message } from "discord.js";
 import { BaseCommand } from "./base.command";
 
 export class BjornHitsCommand implements BaseCommand {
-    name: string = 'play';
+    name = 'play';
     
     handler(message: Message<boolean>, fileName: string): Promise<void> {
         const connection = joinVoiceChannel({
@@ -14,7 +14,7 @@ export class BjornHitsCommand implements BaseCommand {
 
         const player = createAudioPlayer();
 
-        let resourcePath = '';
+        const resourcePath = '';
 
         const soundResource = createAudioResource(resourcePath);
 

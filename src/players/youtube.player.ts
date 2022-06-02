@@ -7,7 +7,7 @@ import { BasePlayer } from "./base.player";
 export class YoutubePlayer implements BasePlayer {
 
     private queue: Queue<YoutubeAudio>;
-    private isPlaying: boolean = false;
+    private isPlaying = false;
     private player: AudioPlayer | undefined;
     private connection: VoiceConnection | undefined;
 

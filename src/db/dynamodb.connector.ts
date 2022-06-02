@@ -1,4 +1,4 @@
-import { DynamoDB, DynamoDBClient } from "@aws-sdk/client-dynamodb";
+import { DynamoDBClient } from "@aws-sdk/client-dynamodb";
 import { DeleteCommand, DynamoDBDocumentClient, PutCommand, ScanCommand, UpdateCommand } from "@aws-sdk/lib-dynamodb";
 import { BaseEntity } from "../models/entities/base.entity";
 import { DbConnector, DbConnectorFilter, DbConnectorFilterOperator } from "./interfaces/db.connector";
@@ -46,7 +46,7 @@ export class DynamoDbConnector<T extends BaseEntity> implements DbConnector<T> {
 
         if (!result || !result.Items || result.Items?.length === 0) {
             return undefined;
-        };
+        }
 
         return result.Items[0] as T;
     }

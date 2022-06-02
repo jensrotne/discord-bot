@@ -2,7 +2,7 @@ import { BaseEntity } from "../../models/entities/base.entity";
 
 export interface DbConnector<T extends BaseEntity> {
 
-    getSingle<T>(filters: DbConnectorFilter[]): Promise<T | undefined>;
+    getSingle<T>(filters: DbConnectorFilter[]): Promise<T | undefined>;
 
     getAll<T>(): Promise<T[]>;
 
@@ -23,7 +23,7 @@ export interface DbConnector<T extends BaseEntity> {
 export interface DbConnectorFilter {
     key: string;
     operator: DbConnectorFilterOperator;
-    value: string | number | boolean | Date | null | undefined | Array<string | number | boolean | Date>;
+    value: string | number | boolean | Date | null | undefined | Array<string | number | boolean | Date>;
 }
 
 export enum DbConnectorFilterOperator {
