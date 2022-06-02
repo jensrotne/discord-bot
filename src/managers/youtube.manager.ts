@@ -25,7 +25,9 @@ export class YoutubeManager {
     }
 
     static async getAudioStream(videoUrl: string): Promise<any> {
-        const stream = await play.stream(videoUrl);
+        const stream = await play.stream(videoUrl, {
+            discordPlayerCompatibility: true
+        });
 
         await new Promise(resolve => setTimeout(resolve, 500));
 
