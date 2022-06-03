@@ -12,7 +12,7 @@ jobs:
     steps:
       - checkout
       - setup_remote_docker:
-          docker_layer_caching: false
+          docker_layer_caching: true
       - run:
           name: Build and tag Docker image
           command: docker build -t ${repositoryUri}/${imageName}:latest -t ${repositoryUri}/${imageName}:<< pipeline.number >> .
