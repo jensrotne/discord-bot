@@ -1,13 +1,2 @@
 node_modules
 npm-debug.log
-.gitattributes
-.gitignore
-.vscode
-.vscodeignore
-LICENSE
-README.md
-.nvmrc
-tests
-.circleci
-node.sh
-.env
